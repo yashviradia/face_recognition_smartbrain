@@ -2,7 +2,7 @@
 
 - Using a machine learning API, it can detect face from images.
 
-![SmartBrain App after log in](Smartbrain_after_login.png)
+![SmartBrain App after log in](images/Smartbrain_after_login.png)
 
 ### `npm test`
 

@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/smartbrain/static/css/main.0042128f.css",
-    "main.js": "/smartbrain/static/js/main.fbd32edd.js",
-    "static/js/787.97a96b3a.chunk.js": "/smartbrain/static/js/787.97a96b3a.chunk.js",
-    "index.html": "/smartbrain/index.html",
-    "main.0042128f.css.map": "/smartbrain/static/css/main.0042128f.css.map",
-    "main.fbd32edd.js.map": "/smartbrain/static/js/main.fbd32edd.js.map",
-    "787.97a96b3a.chunk.js.map": "/smartbrain/static/js/787.97a96b3a.chunk.js.map"
+    "main.css": "/image_recognition_smartbrain/static/css/main.0042128f.css",
+    "main.js": "/image_recognition_smartbrain/static/js/main.5f66673d.js",
+    "static/js/787.97a96b3a.chunk.js": "/image_recognition_smartbrain/static/js/787.97a96b3a.chunk.js",
+    "index.html": "/image_recognition_smartbrain/index.html",
+    "main.0042128f.css.map": "/image_recognition_smartbrain/static/css/main.0042128f.css.map",
+    "main.5f66673d.js.map": "/image_recognition_smartbrain/static/js/main.5f66673d.js.map",
+    "787.97a96b3a.chunk.js.map": "/image_recognition_smartbrain/static/js/787.97a96b3a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0042128f.css",
-    "static/js/main.fbd32edd.js"
+    "static/js/main.5f66673d.js"
   ]
 }

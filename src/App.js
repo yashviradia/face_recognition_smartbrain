@@ -10,7 +10,7 @@ import 'tachyons';
 import './App.css';
 
 const PAT = 'PAT';
-const USER_ID = 'USER_ID';       
+const USER_ID = 'USER';       
 const APP_ID = 'APP_ID';
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';    

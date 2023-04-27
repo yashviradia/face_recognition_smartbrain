@@ -1,70 +1,76 @@
-import React, { Component } from 'react';
-import Navigation from './components/navigation/Navigation';
-import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import React, {Component} from 'react';
 import Logo from './components/Logo/Logo';
-import ImageLinkFrom from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
+import Navigation from './components/Navigation/Navigation';
+import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
+import 'tachyons';
 import './App.css';
-// Using particles background at the end.
-// import { useCallback } from "react";
-// import Particles from "react-particles";
-// import { loadFull } from "tsparticles";
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// In this section, we set the user authentication, user and app ID, model details, and the URL
-// of the image we want as an input. Change these strings to run your own example.
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Your PAT (Personal Access Token) can be found in the portal under Authentification
 const PAT = 'PAT';
-// Specify the correct user_id/app_id pairings
-// Since you're making inferences outside your app's scope
-const USER_ID = 'user_id';       
-const APP_ID = 'app_id';
-// Change these to whatever model and image URL you want to use
-const MODEL_ID = 'color-recognition';
-const MODEL_VERSION_ID = 'dd9458324b4b45c2be1a7ba84d27cd04';    
-
+const USER_ID = 'USER_ID';       
+const APP_ID = 'APP_ID';
+const MODEL_ID = 'face-detection';
+const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';    
 
 class App extends Component {
 
-  // const particlesInit = useCallback(async engine => {
-  //   console.log(engine);
-  //   // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-  //   // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-  //   // starting from v2 you can add only the features you need reducing the bundle size
-  //   await loadFull(engine);
-  // }, []);
-
-  // const particlesLoaded = useCallback(async container => {
-  //   await console.log(container);
-  // }, []);
-
-  // Adding functionality to our app.
   constructor() {
     super();
     this.state = {
       input: '', 
       imageUrl: '',
+      box: {},
       route: 'signin',
       isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: '',
+      }
     }
+  }
+
+  loadUser = (data) => {
+    this.setState({ user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined,
+      }
+    })
+  }
+
+  calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById("inputimage");
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
+    }
+  }
+
+  displayFaceBox = (box) => {
+    this.setState({box: box});
   }
 
   onInputChange = (event) => {
     this.setState({input: event.target.value});
   }
 
-  onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input})
+  onPictureSubmit = () => {
+    this.setState({imageUrl: this.state.input});
 
     const IMAGE_URL = this.state.input;
-
-    ///////////////////////////////////////////////////////////////////////////////////
-    // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
-    ///////////////////////////////////////////////////////////////////////////////////
 
     const raw = JSON.stringify({
         "user_app_id": {
@@ -73,11 +79,11 @@ class App extends Component {
         },
         "inputs": [
             {
-                "data": {
-                    "image": {
-                        "url": IMAGE_URL
-                    }
-                }
+              "data": {
+                  "image": {
+                      "url": IMAGE_URL
+                  }
+              }
             }
         ]
     });
@@ -91,14 +97,26 @@ class App extends Component {
       body: raw
     };
 
-    // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
-    // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
-    // this will default to the latest version_id
-
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+    .then(response => {
+      console.log('hi', response)
+      // if (response) {
+      //   fetch('http://localhost:3000/image', {
+      //     method: 'put',
+      //     headers: {'Content-Type': 'application/json'},
+      //     body: JSON.stringify({
+      //       id: this.state.user.id
+      //     })
+      //   })
+      //     .then(response => response.json())
+      //     .then(count => {
+      //       this.setState(Object.assign(this.state.user, { entries: count}))
+      //     })
+
+      // }
+      this.displayFaceBox(this.calculateFaceLocation(response))
+    })
+    .catch(err => console.log(err));
   }
 
   onRouteChange = (route) => {
@@ -108,39 +126,35 @@ class App extends Component {
       this.setState({isSignedIn: true});
     }
     this.setState({route: route});
-  }
+  } 
+
 
   render() {
-    const { isSignedIn, imageUrl, route } = this.state;
+    const {imageUrl, box, isSignedIn, route} = this.state;
+
     return (
       <div className="App">
-        {/* <Particles 
-        id="tsparticles" 
-        url="http://foo.bar/particles.json" 
-        init={particlesInit} 
-        loaded={particlesLoaded}   
-        /> */}
-
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
-        { this.state.route === 'home' 
+        { route === 'home' 
           ? <div>
               <Logo />
-              <Rank />
-              <ImageLinkFrom 
+              <Rank name={this.state.user.name} entries={this.state.user.entries} />
+              <ImageLinkForm 
                 onInputChange={this.onInputChange} 
-                onButtonSubmit={this.onButtonSubmit} 
+                onPictureSubmit={this.onPictureSubmit} 
               />
-              <FaceRecognition imageUrl={imageUrl} />
+              <FaceRecognition box={box} imageUrl={imageUrl} />
             </div>
           : (
             route === 'signin'
-            ? <Signin onRouteChange={this.onRouteChange} />
-            : <Register onRouteChange={this.onRouteChange} />
+            ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+            : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
           )
         }
       </div>
     );
   }
 }
+
 
 export default App;

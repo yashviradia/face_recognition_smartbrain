@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/image_recognition_smartbrain/static/css/main.9bc80d81.css",
-    "main.js": "/image_recognition_smartbrain/static/js/main.14bcdf25.js",
+    "main.js": "/image_recognition_smartbrain/static/js/main.6b35025a.js",
     "static/js/787.97a96b3a.chunk.js": "/image_recognition_smartbrain/static/js/787.97a96b3a.chunk.js",
     "index.html": "/image_recognition_smartbrain/index.html",
     "main.9bc80d81.css.map": "/image_recognition_smartbrain/static/css/main.9bc80d81.css.map",
-    "main.14bcdf25.js.map": "/image_recognition_smartbrain/static/js/main.14bcdf25.js.map",
+    "main.6b35025a.js.map": "/image_recognition_smartbrain/static/js/main.6b35025a.js.map",
     "787.97a96b3a.chunk.js.map": "/image_recognition_smartbrain/static/js/787.97a96b3a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9bc80d81.css",
-    "static/js/main.14bcdf25.js"
+    "static/js/main.6b35025a.js"
   ]
 }

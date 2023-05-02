@@ -1,6 +1,6 @@
 {
   "name": "smartbrain",
-  "homepage": "https://yashviradia.github.io/image_recognition_smartbrain",
+  "homepage": "https://yashviradia.github.io/face_recognition_smartbrain",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

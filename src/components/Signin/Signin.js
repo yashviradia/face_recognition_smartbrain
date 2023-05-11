@@ -14,7 +14,7 @@ const Signin = ({onRouteChange, loadUser}) => {
     }
 
     const onSubmitSignIn = () => {
-        fetch("http://localhost:3000/signin", {
+        fetch("http://localhost:3001/signin", {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -22,14 +22,13 @@ const Signin = ({onRouteChange, loadUser}) => {
                 password: signInPassword,
             })
         })
-            .then(response => {response.json()})
-            .then(user => {
-                if (user.id) {
-                    loadUser(user);
-                    onRouteChange('home');
-                }
-            })
-        onRouteChange('home');
+         .then(response => response.json())
+         .then(user => {
+            if (user.id) {
+                loadUser(user);
+                onRouteChange('home');
+            }
+         })
     }
 
     return (

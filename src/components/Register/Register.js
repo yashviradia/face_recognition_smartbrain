@@ -19,7 +19,7 @@ const Register = ({onRouteChange, loadUser}) => {
     }
 
     const onSubmitSignIn = () => {
-        fetch("http://localhost:3000/register", {
+        fetch("http://localhost:3001/register", {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -28,14 +28,13 @@ const Register = ({onRouteChange, loadUser}) => {
                 name: name,
             })
         })
-            .then(response => {response.json()})
-            .then(user => {
-                if (user) {
-                    loadUser(user);
-                    onRouteChange('home');
-                }
-            })
-        onRouteChange('home');
+        .then(response => {response.json()})
+        .then(user => {
+            if (user.id) {
+                loadUser(user);
+                onRouteChange('home');
+            }
+        })
     }
 
 

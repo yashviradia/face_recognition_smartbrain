@@ -17,3 +17,7 @@
 
 # Next maintainance
 - It is scheduled on 26.08.2023
+
+# New Features to come 
+- User able to delete their own account.
+- Guide of how this web app works.

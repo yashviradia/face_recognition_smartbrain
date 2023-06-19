@@ -15,9 +15,5 @@
 # Database 
 - Built with ![postgresql](https://www.postgresql.org/)
 
-# Bugs that recently appeared
-- These will be solved within few days.
-
-1. Update Clarifai API call with ![gRPC Channel](https://docs.clarifai.com/api-guide/api-overview/api-clients/grpc-vs-http-channels).
-2. Add ![particles](https://github.com/VincentGarreau/particles.js) in background for styling
-3. Deploy new version on ![Heroku](https://www.heroku.com/) once more.
+# Next maintainance
+- It is scheduled on 26.08.2023

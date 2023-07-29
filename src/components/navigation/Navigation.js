@@ -1,3 +1,5 @@
+// Problem was with this navigation path. In directory the name was 'navigation'.
+
 import React from 'react';
 
 const Navigation = ({ onRouteChange, isSignedIn }) => {

@@ -3,7 +3,7 @@
 - Using machine learning API, this app can detect human faces from an image given by user.
 
 
-![SmartBrain App after log in](images/Smartbrain_after_login.png)
+![SmartBrain App after log in](images/festival.png)
 
 # Frontend
 - Built with ![Reactjs](https://react.dev/).

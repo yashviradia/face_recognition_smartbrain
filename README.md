@@ -3,7 +3,7 @@
 - Using machine learning API, this app can detect human faces from an image given by user.
 
 
-![SmartBrain App after log in](images/festival.png)
+![SmartBrain App after log in](videos/smartbrain_intro_edited.mp4)
 
 # Frontend
 - Built with ![Reactjs](https://react.dev/).
@@ -14,9 +14,6 @@
 
 # Database 
 - Built with ![postgresql](https://www.postgresql.org/)
-
-# Next maintainance
-- It is scheduled on 26.08.2023
 
 # New Features to come 
 - User able to delete their own account.

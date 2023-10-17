@@ -9,13 +9,9 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 
-// Your PAT (Personal Access Token) can be found in the portal under Authentification
 const PAT = '59db6d800d7b492091d8ffef0abdefe4';
-// Specify the correct user_id/app_id pairings
-// Since you're making inferences outside your app's scope
 const USER_ID = 'clarifai';       
 const APP_ID = 'main';
-// Change these to whatever model and image URL you want to use
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
 

@@ -15,6 +15,12 @@
 # Database 
 - Built with ![postgresql](https://www.postgresql.org/)
 
-# New Features to come 
-- User able to delete their own account.
-- Guide of how this web app works.
+# Run App on your computer
+- On the GitHub page for this repository, click on the button "Fork."
+- `git clone https://github.com/<your-github-username>/face_recognition_smartbrain.git`
+
+- Then install all dependencies for your project.
+    - `npm install`
+
+- Make your this app run locally on `http://localhost:3000/`
+    - `npm start`
